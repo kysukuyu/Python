@@ -34,3 +34,5 @@ plt.plot(temperatures, regression_sales, color="blue")
 plt.plot(new_temperatures, predicted_sales,
          color="red", marker="o",markersize=10)
 plt.show()
+![image](https://github.com/kysukuyu/Python/blob/main/scatter plots.gif)
+
