@@ -165,4 +165,4 @@ plt.xlabel("Average number of rooms per dwelling(RM)")
 plt.ylabel("Housing price(MEDV)")
 plt.title("Relationship between RM and Price")
 plt.show()
-
+![image](https://github.com/kysukuyu/Python/blob/main/RM.gif)
