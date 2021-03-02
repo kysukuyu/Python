@@ -124,6 +124,7 @@ print(target.head())
 3  33.4
 4  36.2
 
+訓練預測模型
 boston = datasets.load_boston()
 
 X = pd.DataFrame(boston.data, columns=boston.feature_names)
@@ -166,3 +167,90 @@ plt.ylabel("Housing price(MEDV)")
 plt.title("Relationship between RM and Price")
 plt.show()
 ![image](https://github.com/kysukuyu/Python/blob/main/RM.gif)
+
+lm = LinearRegression()
+lm.fit(X,y)
+predicted_price=lm.predict(X)
+print(predicted_price[0:5])
+
+[30.00384338 25.02556238 30.56759672 28.60703649 27.94352423]
+
+plt.scatter(y, predicted_price)
+plt.xlabel("Price")
+plt.ylabel("Predicted Price")
+plt.title("Price vs Predicted Price")
+plt.show()
+
+![image](https://github.com/kysukuyu/Python/blob/main/predicted_price.gif)
+
+隨機分割資料集
+import pandas as pd
+from sklearn import datasets
+from sklearn.linear_model import LinearRegression
+from sklearn.model_selection import train_test_split
+import matplotlib.pyplot as plt
+
+boston = datasets.load_boston()
+X = pd.DataFrame(boston.data, columns=boston.feature_names)
+target = pd.DataFrame(boston.target, columns=["MEDV"])
+y = target["MEDV"]
+
+XTrain, XTest, yTrain, ytest = train_test_split(X, y, test_size=0.33,
+                                                random_state=5)
+lm = LinearRegression()
+lm.fit(XTrain, yTrain)
+
+pred_test = lm.predict(XTest)
+plt.scatter(ytest, pred_test)
+plt.xlabel("Price")
+plt.ylabel("Predicted Price")
+plt.title("Price vs Predicted Price")
+plt.show()
+![image](https://github.com/kysukuyu/Python/blob/main/predicted_price2.gif)
+
+預測模型績效
+lm = LinearRegression()
+lm.fit(XTrain, yTrain)
+pred_train = lm.predict(XTrain)
+pred_test = lm.predict(XTest)
+
+MSE_train = np.mean((yTrain-pred_train)**2)
+MSE_test = np.mean((ytest-pred_test)**2)
+print("訓練資料的MSE:",MSE_train)
+print("測試資料的MSE:",MSE_test)
+print("訓練資料的R-squared:", lm.score(XTrain, yTrain))
+print("測試資料的R-squared:",lm.score(XTest, ytest))
+
+訓練資料的MSE: 19.54675847353467
+測試資料的MSE: 28.530458765974686
+訓練資料的R-squared: 0.7551332741779998
+測試資料的R-squared: 0.6956551656111596
+
+MSE = np.mean((y-predicted_price)**2)
+print("MSE", MSE)
+print("R-squared:",lm.score(X, y))
+
+MSE 21.894831181729213
+R-squared: 0.7333350744540272
+
+plt.scatter(pred_train, pred_train-yTrain,
+            c="b",s=40,alpha=0.5, label="Training Data")
+plt.scatter(pred_test, pred_test-ytest,
+            c="r",s=40, label="Test Data")
+plt.hlines(y=0, xmin=0, xmax=50)
+plt.title("Residual Plot")
+plt.ylabel("Residual Value")
+plt.legend()
+plt.show()
+![image](https://github.com/kysukuyu/Python/blob/main/residual value.gif)
+
+Logistic迴歸
+import numpy as np
+import matplotlib.pyplot as plt
+t = np.arange(-6, 6, 0.1)
+S = 1/(1+(np.e**(-t)))
+
+plt.plot(t, S)
+plt.title("sigmoid function")
+plt.show()
+![image](https://github.com/kysukuyu/Python/blob/main/sigmoid function.gif)
