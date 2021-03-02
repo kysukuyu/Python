@@ -139,3 +139,6 @@ plt.scatter(X["petal_length"],X["petal_width"],color=colmap[y])
 plt.xlabel("Petal Length")
 plt.ylabel("Petal Width")
 plt.show()
+![image](https://github.com/kysukuyu/Python/blob/main/sepal_petal.gif)
+
+
