@@ -74,7 +74,7 @@ latter are NOT linearly separable from each other.
      conceptual clustering system finds 3 classes in the data.
    - Many, many more ...
    
-   import pandas as pd
+import pandas as pd
 from sklearn import datasets
 from sklearn import tree
 from sklearn.model_selection import train_test_split
